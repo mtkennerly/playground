@@ -1,0 +1,28 @@
+on:
+  - push
+  - pull_request
+
+name: Main
+
+jobs:
+  pandoc-with-weasyprint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - uses: r-lib/actions/setup-pandoc@v1
+        with:
+          pandoc-version: '2.11'
+      - run: |
+          pip install weasyprint
+          mkdir out
+          cd docs
+          pandoc sample.md -o ../out/sample.html --standalone --table-of-contents
+          pandoc sample.md -o ../out/sample.pdf --pdf-engine weasyprint --table-of-contents
+          pandoc sample.md -o ../out/sample-with-css-file.pdf --pdf-engine weasyprint --table-of-contents --css style.css
+      - uses: actions/upload-artifact@v2
+        with:
+          name: out
+          path: out
