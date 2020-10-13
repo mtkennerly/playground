@@ -37,7 +37,8 @@ This is a long line. This is a long line. This is a long line. This is a long li
 ```json
 {
   "codeBlockWithSyntaxHighlighting": {
-    "foo": "bar"
+    "foo": "bar",
+    "lengthy": "This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line. This is a long line."
   }
 }
 ```
