@@ -16,7 +16,12 @@ jobs:
         with:
           pandoc-version: '2.11'
       - run: |
-          pip install weasyprint
+          # pip install weasyprint
+          git clone https://github.com/Kozea/WeasyPrint.git
+          cd WeasyPrint
+          pip install .
+          cd ..
+
           mkdir out
           cd docs
           pandoc sample.md -o ../out/sample.html --standalone --table-of-contents
