@@ -21,7 +21,8 @@ jobs:
           cd docs
           pandoc sample.md -o ../out/sample.html --standalone --table-of-contents
           pandoc sample.md -o ../out/sample.pdf --pdf-engine weasyprint --table-of-contents
-          pandoc sample.md -o ../out/sample-with-css-file.pdf --pdf-engine weasyprint --table-of-contents --css style.css
+          pandoc sample.md -o ../out/sample-with-css-arg.pdf --pdf-engine weasyprint --table-of-contents --css style.css
+          pandoc sample-with-css-link.md -o ../out/sample-with-css-link.pdf --pdf-engine weasyprint --table-of-contents
       - uses: actions/upload-artifact@v2
         with:
           name: out
