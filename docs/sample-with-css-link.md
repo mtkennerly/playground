@@ -4,7 +4,7 @@ lang: en-US
 fontsize: 12pt
 ---
 
-<link ref="stylesheet" type="text/css" href="sample.css">
+<link rel="stylesheet" type="text/css" href="sample.css">
 
 ![icon](icon.svg)
 
