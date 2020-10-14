@@ -4,10 +4,10 @@ lang: en-US
 fontsize: 12pt
 ---
 
-<style type="text/css" scoped>
-.sourceCode {
-    white-space: pre-wrap !important;
-}
+<style type="text/css">
+  .sourceCode {
+      white-space: pre-wrap !important;
+  }
 </style>
 
 ![icon](icon.svg)
