@@ -1,4 +1,4 @@
 .sourceCode {
-    background-color: pink;
-    white-space: pre-wrap;
+    background-color: pink !important;
+    white-space: pre-wrap !important;
 }
