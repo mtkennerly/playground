@@ -24,12 +24,18 @@ jobs:
 
           mkdir out
           cd docs
+
           pandoc sample.md -o ../out/sample.html --standalone --table-of-contents
           pandoc sample.md -o ../out/sample.pdf --pdf-engine weasyprint --table-of-contents
+
           pandoc sample.md -o ../out/sample-with-css-arg.pdf --pdf-engine weasyprint --table-of-contents --css style.css
+
           pandoc sample-with-css-link.md -o ../out/sample-with-css-link.html --standalone --table-of-contents
           pandoc sample-with-css-link.md -o ../out/sample-with-css-link.pdf --pdf-engine weasyprint --table-of-contents
-      - uses: actions/upload-artifact@v2
+
+          pandoc sample-with-css-inline.md -o ../out/sample-with-css-inline.html --standalone --table-of-contents
+          pandoc sample-with-css-inline.md -o ../out/sample-with-css-inline.pdf --pdf-engine weasyprint --table-of-contents
+          - uses: actions/upload-artifact@v2
         with:
           name: out
           path: out
