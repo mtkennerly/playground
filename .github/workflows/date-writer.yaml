@@ -1,0 +1,17 @@
+on: workflow_dispatch
+
+name: Date writer
+
+jobs:
+  recent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - run: |
+          date > date.md
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Auto commit test
+          commit_author: GitHub Actions <actions@github.com>
