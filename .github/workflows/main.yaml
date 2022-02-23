@@ -1,34 +1,22 @@
 on:
-  - push
-  - pull_request
+  schedule:
+    - cron: '*/5 * * * *'
 
-name: Main
+name: Test
 
 jobs:
-  pandoc-with-weasyprint:
+  recent:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
         with:
-          python-version: '3.7'
-      - uses: r-lib/actions/setup-pandoc@v1
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v1
         with:
-          pandoc-version: '2.11'
+          node-version: '10'
       - run: |
-          # pip install weasyprint
-          git clone https://github.com/Kozea/WeasyPrint.git
-          cd WeasyPrint
-          pip install .
-          cd ..
-
-          mkdir out
-          cd docs
-          pandoc sample.md -o ../out/sample.html --standalone --table-of-contents
-          pandoc sample.md -o ../out/sample.pdf --pdf-engine weasyprint --table-of-contents
-          pandoc sample.md -o ../out/sample-with-css-arg.pdf --pdf-engine weasyprint --table-of-contents --css style.css
-          pandoc sample-with-css-link.md -o ../out/sample-with-css-link.pdf --pdf-engine weasyprint --table-of-contents
-      - uses: actions/upload-artifact@v2
+          date > README.md
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          name: out
-          path: out
+          commit_message: Auto commit test
+          commit_author: GitHub Actions <actions@github.com>
