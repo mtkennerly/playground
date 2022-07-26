@@ -1,0 +1,40 @@
+on:
+  workflow_dispatch: ~
+
+jobs:
+  rust:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          repository: iced-rs/iced
+          path: iced
+          ref: '0.4.2'
+      - uses: actions/checkout@v3
+        with:
+          repository: rust-windowing/winit
+          path: winit
+          ref: v0.26.1
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          # target: ${{ matrix.rust-target }}
+          override: true
+      # - if: ${{ matrix.os == 'ubuntu-18.04' }}
+      #   run: sudo apt-get update && sudo apt-get install -y gcc libxcb-composite0-dev
+      - run: |
+          cd iced/examples
+          cargo build --release --package stopwatch
+          cd ../../winit
+          cargo build --release --example window
+      - uses: actions/upload-artifact@v1
+        with:
+          name: iced-stopwatch
+          path: target/release/stopwatch
+          # path: target/${{ matrix.rust-target }}/release/${{ matrix.artifact-file }}
+      - uses: actions/upload-artifact@v1
+        with:
+          name: winit-window
+          path: target/release/examples/window
+          # path: target/${{ matrix.rust-target }}/release/${{ matrix.artifact-file }}
