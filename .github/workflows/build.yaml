@@ -31,10 +31,10 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: iced-stopwatch
-          path: target/release/stopwatch
+          path: iced/target/release/stopwatch
           # path: target/${{ matrix.rust-target }}/release/${{ matrix.artifact-file }}
       - uses: actions/upload-artifact@v1
         with:
           name: winit-window
-          path: target/release/examples/window
+          path: winit/target/release/examples/window
           # path: target/${{ matrix.rust-target }}/release/${{ matrix.artifact-file }}
